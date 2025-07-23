@@ -14,11 +14,12 @@ task say_hello {
         String message = read_string(stdout())
     }
 
-    requirements {
-        DockerRequirement {
-            dockerImage: "ubuntu:latest"
-        }
-    }
+    runtime {
+        cpu: 1
+        memory: "1G"
+        disks: "local-disk 1HDD"
+        docker: docker
+     }
 }
 
 workflow main {
