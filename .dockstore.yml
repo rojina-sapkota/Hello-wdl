@@ -1,0 +1,9 @@
+version: 1.2
+workflows:
+  - subclass: WDL
+    primaryDescriptorPath: /workflows/say_hello.wdl
+    name: say-hello
+    descriptorType: WDL
+    testParameterFiles:
+      - /workflows/inputs.json
+
