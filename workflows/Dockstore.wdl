@@ -28,7 +28,7 @@ workflow main {
         Boolean is_pirate = false
     }
 
-    Array[Optional[String]] raw_greetings = [
+    Array[String?] raw_greetings = [
         "Hello",
         "Hallo",
         "Hej",
