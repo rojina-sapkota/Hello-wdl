@@ -18,7 +18,7 @@ task say_hello {
         cpu: 1
         memory: "1G"
         disks: "local-disk 1HDD"
-        docker: docker
+        docker: "ubuntu:latest"
      }
 }
 
