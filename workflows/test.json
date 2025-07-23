@@ -1,4 +1,4 @@
 {
-  "main.name": "World",
-  "main.is_pirate": true
+  "main.name": "world",
+  // "main.is_pirate": true,
 }
