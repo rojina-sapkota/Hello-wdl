@@ -18,8 +18,8 @@ task say_hello {
         cpu: 1
         memory: "1G"
         disks: "local-disk 1HDD"
-        docker: "ubuntu:latest"
-     }
+        docker: "ubuntu:latest"  # Example Docker image
+    }
 }
 
 workflow main {
@@ -35,7 +35,7 @@ workflow main {
         if is_pirate then "Ahoy" else None
     ]
 
-    Array[String] greetings = select_all(raw_greetings)
+    Array[String] greetings = remove_nulls(select_all(raw_greetings))
 
     scatter (greeting in greetings) {
         call say_hello {
