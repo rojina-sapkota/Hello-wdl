@@ -1,4 +1,4 @@
-version 1.2
+version 1.0
 
 task say_hello {
     input {
