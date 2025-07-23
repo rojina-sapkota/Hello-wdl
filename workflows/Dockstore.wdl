@@ -15,7 +15,9 @@ task say_hello {
     }
 
     requirements {
-        container: "ubuntu:latest"
+        DockerRequirement {
+            dockerImage: "ubuntu:latest"
+        }
     }
 }
 
