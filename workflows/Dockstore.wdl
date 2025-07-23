@@ -1,4 +1,4 @@
-version 1.0
+version 1.2
 
 task say_hello {
     input {
@@ -6,19 +6,16 @@ task say_hello {
         String name
     }
 
-    command <<< 
-        echo "~{greeting}, ~{name}!" 
+    command <<<
+        echo "~{greeting}, ~{name}!"
     >>>
 
     output {
         String message = read_string(stdout())
     }
 
-    runtime {
-        cpu: 1
-        memory: "1G"
-        disks: "local-disk 1HDD"
-        docker: "ubuntu:latest"  # Example Docker image
+    requirements {
+        container: "ubuntu:latest"
     }
 }
 
@@ -28,20 +25,21 @@ workflow main {
         Boolean is_pirate = false
     }
 
-    Array[String?] raw_greetings = [
+    Array[String] greetings = select_all([
         "Hello",
         "Hallo",
         "Hej",
-        if is_pirate then "Ahoy" else None
-    ]
-
-    Array[String] greetings = select_all(raw_greetings)
+        (
+            if is_pirate
+            then "Ahoy"
+            else None
+        ),
+    ])
 
     scatter (greeting in greetings) {
         call say_hello {
-            input:
-                greeting = greeting,
-                name = name
+            greeting,
+            name,
         }
     }
 
