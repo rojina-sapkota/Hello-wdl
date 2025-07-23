@@ -35,7 +35,7 @@ workflow main {
         if is_pirate then "Ahoy" else None
     ]
 
-    Array[String] greetings = remove_nulls(select_all(raw_greetings))
+    Array[String] greetings = select_all(raw_greetings)
 
     scatter (greeting in greetings) {
         call say_hello {
